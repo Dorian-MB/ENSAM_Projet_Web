@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Agilog</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{url_for('static', filename='LogoAgilog.png')}}" class="image">
+    </div>
+    <h1 style="text-align:center;"> Agi Log </h1 style="text-align:center;">
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+
+    <div style="text-align:center;">
+        <h1><a href='{{url_for("stock_agilog")}}'> <button>Stock Agi Log</button> </a> </h1>
+        <h1><a href='{{url_for("suivi_commande_agilog_from_agilean")}}'> <button name="">Commandes
+                    Agilean</button></a></h1>
+        <span>(a délivrer)</span>
+        <h1><a href='{{url_for("suivi_commande_agilog_to_agigreen")}}'> <button>Commande
+                    Agigreen</button></a></h1>
+        <span>(a recevoir)</span>
+    </div>
+
+</body>
+
+</html>

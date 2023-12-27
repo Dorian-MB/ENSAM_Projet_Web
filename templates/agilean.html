@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agilean</title>
+  <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+  <div class="container">
+    <img src="{{url_for('static', filename='LogoAgilean.png')}}" class="image">
+  </div>
+  <h1 style="text-align:center;"> Agi Lean </h1 style="text-align:center;">
+
+
+  <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+
+  <h1 style="text-align:center;"><a href="{{url_for('stock_agilean')}}"> <button>Stock Agi Lean</button> </a> </h1>
+  <h1 style="text-align:center;"><a href="{{url_for('pieces_detachees_agilean')}}"> <button>Pièces detachées</button>
+    </a>
+  </h1>
+  <h1 style="text-align:center;"><a href="{{url_for('suivi_commande_agilean')}}"> <button>Commandes en cours</button>
+    </a> </h1>
+
+</body>
+
+</html>

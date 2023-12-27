@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Agigreen</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{url_for('static', filename='LogoAgigreen.png')}}" class="image">
+    </div>
+    <h1 style="text-align:right;"> Commandes de pièces </h1 style="text-align:right;">
+
+    <h4> <a href="{{url_for('index')}}"> <button>Acceuil</button> </a> </h4>
+    <br>
+    <p> Voici les différentes commandes passées par AgiLog:</p>
+    <br>
+
+    <!-- Contenu de la BBD -->
+    <div class='contenu'>
+        <div class="lp_table">
+            <div class="lp_entetes">
+                <div class="lp_mini_entete">n° commande <br>(id)</div>
+                <div class="lp_entete">etat de la commande</div>
+                <div class="lp_entete">Preparation de la commande</div>
+                <div class="lp_entete">date envoie to agigreen</div>
+            </div>
+            {% for ligne in commandes %}
+            <div class="lp_ligne">
+                <div class="lp_mini_cellule">{{ ligne["id_commande"] }}</div>
+                <div class="lp_cellule">{{ ligne["etat_commande"] }}</div>
+                <div class="lp_cellule">
+                    <form method='post' action='{{ url_for("preparer_commande_agigreen") }}'>
+                        <div class="menuderoulantmini">
+                            <input type='hidden' name='preparer_lot_id_cmd' value='{{ ligne["id_commande"] }}'>
+                            <label id="minimenu">preparer lots de commande</label>
+                            <input type='submit' value='Preparer' class="submitbtnmini">
+                        </div>
+                    </form>
+                </div>
+                <div class="lp_cellule">
+                    {% if ligne["date_expedition_agilog"] == None %}
+
+                    <form method='post' action='{{ url_for("agigreen") }}'>
+                        <div class='menuderoulantmini'>
+                            <input type='hidden' name='envoi_agilog_id_cmd' value='{{ ligne["id_commande"] }}'>
+                            <label id="minimenu">Commande Envoyés a Agilog</label>
+                            <input type='submit' value='Envoyée' class="submitbtnmini">
+                        </div>
+                    </form>
+
+                    {% else %}
+                    <h4> Envoyée le :<br>{{ ligne["date_expedition_agilog"] }}</h4>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+</body>
+
+</html>

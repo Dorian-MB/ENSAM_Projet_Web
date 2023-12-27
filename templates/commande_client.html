@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Commande client</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+
+
+    <h1 style="text-align:center;"> Commande de véhicule </h1 style="text-align:center;">
+
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+    <h4> <a href='{{url_for("client")}}'> <button>Retour</button> </a> </h4>
+
+    <br>
+
+    <p> Voici les différents kits de bases disponibles :</p>
+
+    {% if msg!="" %}<strong style='color:red'>{{ msg }}</strong><br /><br />{% endif %}
+    <form method='post'>
+        <div id="LabelStyle">
+            <div class='inputContainer'>
+                <!-- &nbsp;  espace insécable -->
+                <label for='nom'>Nom :</label>&nbsp;<input type='text' name='nom' value='' placeholder="Entrez votre nom"><br><br>
+                <label for='prenom'>Prénom :</label>&nbsp;<input type='text' name='prenom' value='' placeholder="Entrez votre prenom">
+            </div>
+
+            <!-- Menu déroulant Kits-->
+            <div id="conteneurKits">
+                <br>
+                <label for='chassis'>Chassis :</label>
+                <select name="id_chassis" required>
+                    <option value='' selected disabled>Choix du chassis</option>
+                    <option value="1">Chassis court ouvert</option>
+                    <option value="2">Chassis court fermé</option>
+                    <option value="3">Chassis long ouvert</option>
+                    <option value="4">Chassis long fermé</option>
+                </select>
+            </div>
+        </div>
+
+        <br><br>
+
+        <p><strong>Voici les différentes options que vous pouvez rajouter :</strong></p>
+        <div id="LabelStyle">
+            <label for='id_options'>Options :</label>
+            <div class="menuDeroulant">
+                <div class="option-container">
+                    <input type="checkbox" id="aucuneOption" name="option[]" value="000"
+                        onclick="handleOptionClick(this)"> <!-- voire le fichier script.js -->
+                    <label for="aucuneOption">Aucune Option</label>
+                    <span>(000)</span>
+                </div>
+                <div class="option-container">
+                    <input type="checkbox" id="antenne" class="option" name="option[]" value="100"
+                        onclick="handleOptionClick(this)">
+                    <label for="antenne">Antenne</label>
+                    <span>(100)</span>
+                </div>
+                <div class="option-container">
+                    <input type="checkbox" id="crochet" class="option" name="option[]" value="010"
+                        onclick="handleOptionClick(this)">
+                    <label for="crochet">Crochet d'attelage</label>
+                    <span>(010)</span>
+                </div>
+                <div class="option-container">
+                        <input type="checkbox" id="attache" class="option" name="option[]" value="001"
+                        onclick="handleOptionClick(this)">
+                    <label for="attache">Attache accessoires</label>
+                    <span>(001)</span>
+                </div>
+            </div>
+        </div>
+
+
+        <h4 style="text-align:center;"> <input type='submit' value='Confimer'> </h4>
+    </form>
+
+
+</body>

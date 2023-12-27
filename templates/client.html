@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Client</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+
+
+
+    <h1 style="text-align:center;"> Client </h1 style="text-align:center;">
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+
+    <h1 style="text-align:center;"><a href='{{url_for("commande_client")}}'><button>Commande voiture</button></a> </h1>
+    <h1 style="text-align:center;"><a href='{{url_for("suivi_commande_client_id")}}'> <button>Suivi de commande</button>
+        </a> </h1>
+
+
+</body>

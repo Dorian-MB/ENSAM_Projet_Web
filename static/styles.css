@@ -1,0 +1,305 @@
+
+/* On utilise ID lorsque le style que l’on veut appliquer est unique et  CLASS  si on veut l’appliquer à plusieurs élements. */
+
+title {
+  font-family: Bell MT;
+}
+
+head {
+  text-align: center;
+}
+
+body {
+  background-color: lightgrey;
+  transition: opacity 1s ease-in-out;
+}
+
+h1 {
+  color: black;
+  font-size: 80px;
+}
+
+p {
+  font-size: 20px;
+  color: black;
+
+}
+
+button {
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  color: white;
+  background-color: grey;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.2);
+}
+
+input {
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  color: white;
+  background-color: grey;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+select {
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  color: white;
+  background-color: grey;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+  padding: 0 10px;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+
+
+
+
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 300px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  background-color: grey;
+  border-radius: 10px;
+
+}
+
+.image3 {
+  position: absolute;
+  top: 220px;
+  left: 200px;
+  width: 200px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  background-color: grey;
+  border-radius: 10px;
+
+}
+
+.image2 {
+  position: absolute;
+  top: 370px;
+  left: 200px;
+  width: 200px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  background-color: grey;
+  border-radius: 10px;
+
+}
+
+.image1 {
+  position: absolute;
+  top: 520px;
+  left: 200px;
+  width: 200px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  background-color: grey;
+  border-radius: 10px;
+
+}
+
+
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenu {
+  margin: 2em auto;
+  width: 75%;
+  border: 5px solid #ccc;
+  padding: 0.8em;
+  background: white;
+}
+
+.lp_table {
+  display: table;
+  width: 100%;
+}
+
+.lp_entetes {
+  display: table-header-group;
+  background-color: lightgrey;
+  font-weight: bold;
+}
+.lp_mini_entetes {
+  display: table-header-group;
+  background-color: lightgrey;
+  font-weight: bold;
+  max-width: 30px;
+}
+
+.lp_ligne {
+  display: table-row;
+}
+
+.lp_entete,
+.lp_cellule {
+  display: table-cell;
+  padding: 3px 10px;
+  border: 1px solid #999999;
+}
+.lp_mini_cellule {
+  display: table-cell;
+  padding: 3px 10px;
+  border: 1px solid #999999;
+  max-width: 30px;
+}
+
+
+
+#LabelStyle label {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  cursor: default;
+  user-select: none;
+}
+
+
+.option-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  margin: 5px;
+}
+
+
+
+
+.menuDeroulant {
+  background-color: rgba(82, 82, 82, 0.5);
+  color:black;
+  border: 2px solid #dddddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  width: auto;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.menuDeroulant div {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+/* Personnalisation des cases à cocher */
+.menuDeroulant input[type="checkbox"] {
+  accent-color: #606060;
+  margin: 0px;
+  padding: 0px;
+  margin-bottom: 4px;
+}
+
+.menuDeroulant label {
+  order: 2;
+  cursor: pointer;
+}
+
+
+.menuDeroulant span {
+  order: 3;
+  font-size: 12px;
+  color: #555;
+}
+
+
+
+.menuDeroulantContainer {
+  display: flex;
+  gap: 0px;
+  flex-direction: row;
+}
+
+.menuDeroulantMini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+}
+
+.menuDeroulant {
+  display: flex;
+  justify-content: space-around;
+  width: auto;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+
+.menuDeroulantMini input[type="checkbox"] {
+  accent-color: #606060;
+  margin-bottom: 5px;
+  width: 50px;
+}
+
+.menuDeroulantMini label {
+  font-size: 12px;
+  text-align: center;
+}
+
+.submitBtn {
+  width: 150px;
+  height: 40px;
+  font-size: 16px;
+  color: white;
+  background-color: grey;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+  margin-top: 10px;
+}
+
+.submitBtn:hover {
+  transform: scale(1.05);
+}
+
+
+.submitBtnMini {
+  width: 80px;
+  height: 30px;
+  font-size: 13px;
+  color: white;
+  background-color: grey;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+  margin-top: 10px;
+}
+
+.submitBtnMini:hover {
+  transform: scale(1.05);
+}
+
+#miniMenu{
+  width:150px;
+}
+
+
+.inputContainer input[type="text"]{
+  background-color: white;
+  width : 250px;
+  color:black;
+}

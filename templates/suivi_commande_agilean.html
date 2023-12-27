@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Suivi des commandes</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{url_for('static', filename='LogoAgilean.png')}}" class="image">
+    </div>
+    <h1 style="text-align:right;"> Suivi des commandes </h1 style="text-align:right;">
+
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+    <h4> <a href="{{url_for('agilean')}}"> <button>Retour</button> </a> </h4>
+
+
+
+    <strong>Voici l'état de vos / votre commande(s) :</strong>
+    <br>
+
+    <!-- Contenu de la BBD -->
+    <div class='contenu'>
+        <div class="lp_table">
+            <div class="lp_entetes">
+                <div class="lp_entete">numero de commande (id)</div>
+                <div class="lp_entete">etat de la commande</div>
+                <div class="lp_entete">option</div>
+                <div class="lp_entete">chassis</div>
+                <div class="lp_entete">date_commande_client</div>
+                <div class="lp_entete">Envoyée la commande à Agilog</div>
+                <div class="lp_entete">Reception commande Agilog</div>
+                <div class="lp_entete">date expedition client</div>
+                <div class="lp_entete">MAJ Etat commande</div>
+            </div>
+            {% for ligne in commandes %}
+            <div class="lp_ligne">
+                <div class="lp_cellule">{{ ligne["id"] }}</div>
+                <div class="lp_cellule">{{ ligne["etat_commande"] }}</div>
+                <div class="lp_cellule">{{ ligne["id_option"] }}</div>
+                <div class="lp_cellule">{{ ligne["nom_chassis"] }}</div>
+                <div class="lp_cellule">{{ ligne["date_commande_client"] }}</div>
+
+                <div class="lp_cellule">
+                    {% if ligne["date_envoie_agilog"] == None %}
+                    <form method='post'>
+                        <div class="menuDeroulantMini">
+                            <input type='checkbox' name='envoi_agilog' id='envoi-{{ ligne["id"] }}'
+                                value='{{ ligne["id"] }}' required>
+                            <label for='envoi-{{ ligne["id"] }}'>Envoyée a AgiLog</label>
+                            <input type='submit' value='Envoyée' class="submitBtnMini">
+                        </div>
+                    </form>
+                    {% else %}
+                    <h4> Envoyée le :<br>{{ ligne["date_envoie_agilog"] }}</h4>
+                    {% endif %}
+                </div>
+
+                <div class="lp_cellule">
+                    {% if ligne["date_reception_agilog"] == None %}
+                    <form method='post'>
+                        <div class="menuDeroulantMini">
+                            <input type='checkbox' name='reception_agilog' id='reception-{{ ligne["id"] }}'
+                                value='{{ ligne["id"] }}' required>
+                            <label for='reception-{{ ligne["id"] }}'>Commande receptionée</label>
+                            <input type='submit' value='Envoyée' class="submitBtnMini">
+                        </div>
+                    </form>
+                    {% else %}
+                    <h4> Envoyée le :<br>{{ ligne["date_reception_agilog"] }}</h4>
+                    {% endif %}
+                </div>
+
+                <div class="lp_cellule">{{ ligne["date_expedition_client"] }}</div>
+                <div class="lp_cellule">
+                    {% if ligne['id_chassis'] != None and ligne['id_option'] != None %}
+                    <form method='post'>
+                        <input type='hidden' name='id_commande' value='{{ ligne["id"] }}'>
+                        <select name='etat_commande' class='menuDeroulant' id='miniMenu' required>
+                            <option value='' selected disabled>MAJ Etat cmd</option>
+                            <option value="En cours d'assemblage">En cours d'assemblage</option>
+                            <option value="Commande de pieces manquante">Commande de pieces manquante</option>
+                            <option value='Contrôle qualité en cours'>Contrôle qualité en cours</option>
+                            <option value='Commande validé'>Commande validé</option>
+                            <option value='Commande expédiée au client'>Commande expédiée au client</option>
+                        </select>
+                        <input type='submit' value='Confirmer' class="submitBtn">
+                    </form>
+                    {% endif %}
+                </div>
+
+
+
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+</body>

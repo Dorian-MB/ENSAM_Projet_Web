@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Accueil</title>
+  <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+  <div class="container">
+    <img src="{{url_for('static', filename='LogoAgilean.png')}}" class="image3">
+    <img src="{{url_for('static', filename='LogoAgilog.png')}}" class="image2">
+    <img src="{{url_for('static', filename='LogoAgigreen.png')}}" class="image1">
+  </div>
+  <h1 style="text-align:center;"> Accueil </h1>
+
+  <h1 style="text-align:center;"><a href="{{url_for('agilean')}}"> <button>Agi Lean</button> </a> </h1>
+  <h1 style="text-align:center;"><a href="{{url_for('agilog')}}"> <button>Agi Log</button> </a> </h1>
+  <h1 style="text-align:center;"><a href="{{url_for('agigreen')}}"> <button>Agi Green</button> </a> </h1> <br>
+  <h1 style="text-align:center;"><a href="{{url_for('client')}}"> <button>Client</button> </a> </h1>
+
+</body>
+
+</html>
