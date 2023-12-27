@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Suivie Commande envoyée a AgiGreen</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{url_for('static', filename='LogoAgilog.png')}}" class="image">
+    </div>
+    <h1 style="text-align:right;">Suivie Commande <br> envoyée a AgiGreen</h1 style="text-align:right;">
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+    <h4> <a href='{{url_for("agilog")}}'> <button>Retour</button> </a> </h4>
+    <strong>Voici l'état de vos / votre commande(s) :</strong>
+    <br>
+
+    <!-- Contenu de la BBD -->
+    <div class='contenu'>
+        <div class="lp_table">
+            <div class="lp_entetes">
+                <div class="lp_mini_entete">n° commande <br>(id)</div>
+                <div class="lp_entete">lot cmd <br>(id_cmd)</div>
+                <div class="lp_entete">etat de la commande</div>
+                <div class="lp_entete">id piece</div>
+                <div class="lp_entete">nom piece</div>
+                <div class="lp_entete">quantiter</div>
+                <div class="lp_entete">date envoie to agigreen</div>
+                <div class="lp_entete">date reception from agigreen</div>
+            </div>
+            {% for ligne in commandes %}
+            <div class="lp_ligne">
+                <div class="lp_mini_cellule">{{ ligne["id"] }}</div>
+                <div class="lp_cellule">{{ ligne["id_commande"] }}</div>
+                <div class="lp_cellule">{{ ligne["etat_commande"] }}</div>
+                <div class="lp_cellule">{{ ligne["id_piece"] }}</div>
+                <div class="lp_cellule">{{ ligne["nom_piece"] }}</div>
+                <div class="lp_cellule">{{ ligne["quantiter"] }}</div>
+                <div class="lp_cellule">{{ ligne["date_envoie_agigreen"] }}</div>
+                <div class="lp_cellule">
+                    {% if ligne["date_reception_agigreen"] == None %}
+                    <form method='post'>
+                        <div class="menuDeroulantMini">
+                            <input type='checkbox' name='id_cmd_reception_agigreen' value='{{ ligne["id_commande"] }}'
+                                required>
+                            <label id="miniMenu">Lots de Commande {{ligne["id_commande"]}} AgiGreen
+                                receptionnée</label>
+                            <input type='submit' value='Envoyée' class="submitBtnMini">
+                        </div>
+                    </form>
+                    {% else %}
+                    <h4> Reçus le :<br>{{ ligne["date_reception_agigreen"] }}</h4>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>

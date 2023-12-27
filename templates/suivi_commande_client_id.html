@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Suivi commande id</title>
+	<link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+	<script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+
+	<h1 style="text-align:center;"> Suivi de mes commandes </h1 style="text-align:center;">
+
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+	<h4> <a href='{{url_for("client")}}'> <button>Retour</button> </a> </h4><br>
+	   	
+    {% if msg!="" %}<strong style='color:red'>{{ msg }}</strong><br /><br />{% endif %}
+	
+	<h4><strong>Sélectionnez un critère de recherche :</strong></h4>
+	<form action="{{ url_for('afficher_commande_client') }}" method='post'>
+
+		<select class='menuDeroulant' id="searchType" name="type_search" onchange='showInputs()' required> <!-- voire le fichier script.js -->
+			<option value='' selected disabled>Sélectionnez un critère de recherche</option>
+			<option value='commande'>Numéro de commande</option>
+			<option value='nom_prenom'>Nom et prénom</option>
+		</select>
+
+		<!-- Champs de saisie qui seront affichés/ajustés dynamiquement -->
+		<div class='inputContainer' id="input_client_suivit_commande">
+			<!-- Les champs de texte sont initialement cachés -->
+		</div>
+
+        <h4 style="text-align:center;"> <input type='submit' value='Confimer'/> </h4>
+	</form>
+
+
+
+</body>
+
+</html>

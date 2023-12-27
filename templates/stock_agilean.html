@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head >
+	<meta charset="UTF-8">
+	<title>Stocks Agilean</title>
+	<link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+	<div class="container">
+		<img src="{{url_for('static', filename='LogoAgilean.png')}}" class="image">
+	</div>
+	<h1 style="text-align:center;"> Stocks Agilean</h1 style="text-align:center;">
+
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+	<h4> <a href="{{url_for('agilean')}}"> <button>Retour</button> </a> </h4>
+
+
+	<!-- Contenue Principal -->
+
+	<!-- Modifier la BDD -->
+	<div class='contenu'>
+		<h2>Modifier les stocks</h2>
+		{% if msg!="" %}<strong style='color:red'>{{ msg }}</strong><br /><br />{% endif %}
+		<form method='post'>
+			<div style='text-align:center;'>
+				<label for='id_chassis'>id chassis :</label><input type='text' name='id_chassis' value=''>   
+				<label for='nombre'>nombre :</label><input type='text' name='nombre' value=''> 
+				<label for='mode'>mode :</label><select name='mode'>
+					<option value='0'>Ajouter/Retirer</option>
+					<option value='1'>Mettre a jour</option>
+				</select>
+			</div>
+			<h4 style='text-align:center;'> <input type='submit' value='Confimer'> </h4>
+		</form><br />
+	</div>
+
+	<!-- Contenu de la BBD -->
+	<div class='contenu'>
+		<div class="lp_table">
+			<div class="lp_entetes">
+				<div class="lp_entete">id chassis</div>
+				<div class="lp_entete">nom</div>
+				<div class="lp_entete">quantiter</div>
+			</div>
+			{% for ligne in stocks %}
+			<div class="lp_ligne">
+				<div class="lp_cellule">{{ ligne["id_chassis"] }}</div>
+				<div class="lp_cellule">{{ ligne["nom_chassis"] }}</div>
+				<div class="lp_cellule">{{ ligne["quantiter"] }}</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+</body>
+
+</html>

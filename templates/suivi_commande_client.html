@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Suivi Commande</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+
+<body>
+    <h1 style="text-align:center;"> Suivi de mes commandes </h1 style="text-align:center;">
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+    <h4> <a href='{{url_for("suivi_commande_client_id")}}'> <button>Retour</button> </a> </h4>
+
+    <br>
+
+    <!-- Contenu de la BBD -->
+    <strong>Contenu de vos commandes :</strong>
+    <div class='contenu'>
+        <div class="lp_table">
+            <div class="lp_entetes">
+                <div class="lp_entete">numero de commande (id)</div>
+                <div class="lp_entete">nom</div>
+                <div class="lp_entete">prenom</div>
+                <div class="lp_entete">etat de la commande</div>
+                <div class="lp_entete">option</div>
+                <div class="lp_entete">chassis</div>
+                <div class="lp_entete">date commande (client)</div>
+                <div class="lp_entete">date livraison</div>
+                <div class="lp_entete">Supprimer la Commande</div>
+            </div>
+            {% for ligne in commandes %}
+            <div class="lp_ligne">
+                <div class="lp_cellule">{{ ligne["id"] }}</div>
+                <div class="lp_cellule">{{ ligne["nom"] }}</div>
+                <div class="lp_cellule">{{ ligne["prenom"] }}</div>
+                <div class="lp_cellule">{{ ligne["etat_commande"] }}</div>
+                <div class="lp_cellule">{{ ligne["nom_option"] }}</div>
+                <div class="lp_cellule">{{ ligne["nom_chassis"] }}</div>
+                <div class="lp_cellule">{{ ligne["date_commande_client"] }}</div>
+                <div class="lp_cellule">
+                    {% if ligne["date_livraison_client"] == None %}
+
+                    <form method='post' action='{{ url_for("maj_commande_client") }}'>
+                        <input type='hidden' name='id_commande' value='{{ ligne["id"] }}'>
+                        <select name='etat_commande' class='menuDeroulant' id='miniMenu' required>
+                            <option value='' selected disabled>Validation cmd</option>
+                            <option value='Livraison validée'>Livraison validée</option>
+                            <option value='Livraison Invalidée'>Livraison Invalidée</option>
+                        </select>
+                        <input type='submit' value='Confirmer' class="submitBtn">
+                    </form>
+
+
+                    {% else %}
+                    <h4> Reçus le :<br>{{ ligne["date_livraison_client"] }}</h4>
+                    {%endif%}
+                </div>
+
+                <div class="lp_cellule">
+                    <form id='confimer_suppression' method='post' action="{{ url_for('supprimer_commande_client') }}">
+                        <div class="menuDeroulantMini">
+                            <input type='checkbox' id='supprimer-{{ ligne["id"] }}' name='supprimer'
+                                value="{{ ligne['id'] }}" required>
+                            <label for='supprimer-{{ ligne["id"] }}'>Suprimer la Commande</label>
+                            <input type='submit' value='Confirmer' class="submitBtnMini"
+                                onclick="confirmSubmission()" />
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <h4> <a href='{{url_for("commande_client")}}'> <button>Nouvelle commande</button> </a> </h4>
+
+</body>

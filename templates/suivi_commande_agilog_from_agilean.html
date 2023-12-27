@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Suivi commande de agilean</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{url_for('static', filename='LogoAgilog.png')}}" class="image">
+    </div>
+    <h1 style="text-align:right;">Commandes Agilog</h1 style="text-align:right;">
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+    <h4> <a href='{{url_for("agilog")}}'> <button>Retour</button> </a> </h4>
+    <strong>Voici l'état de vos / votre commande(s) :</strong>
+    <br>
+
+    <!-- Contenu de la BBD -->
+    <div class='contenu'>
+        <div class="lp_table">
+            <div class="lp_entetes">
+                <div class="lp_mini_entete">n°<br>commande <br>(id)</div>
+                <div class="lp_entete">etat de la commande</div>
+                <div class="lp_entete">option</div>
+                <div class="lp_entete">chassis</div>
+                <div class="lp_entete">date envoi agigreen</div>
+                <div class="lp_entete">date expedition agilean</div>
+            </div>
+            {% for cmd_agilean, cmd_agilog in commandes %}
+            <div class="lp_ligne">
+                <div class="lp_mini_cellule">{{ cmd_agilean["id"] }}</div>
+                <div class="lp_cellule">{{ cmd_agilog["etat_commande"] }}</div>
+                <div class="lp_cellule">{{ cmd_agilean["id_option"] }}</div>
+                <div class="lp_cellule">{{ cmd_agilean["nom_chassis"] }}</div>
+
+                <div class="lp_cellule">
+                    {% if cmd_agilog["date_envoie_agigreen"] == None %}
+                    <form method='post'>
+                        <div class="menuDeroulantMini">
+                            <input type='checkbox' name='sent_id_commande_to_agigreen' value='{{ cmd_agilean["id"] }}'
+                                required>
+                            <label id="miniMenu">Envoyée la commande a agigreen</label>
+                            <input type='submit' value='Envoyée' class="submitBtnMini">
+                        </div>
+                    </form>
+                    {% else %}
+                    <h4> Envoyée le :<br>{{ cmd_agilog["date_envoie_agigreen"] }}</h4>
+                    {% endif %}
+                </div>
+
+                <div class="lp_cellule">
+                    {% if cmd_agilog["date_expedition_agilean"] == None %}
+                    <form method='post'>
+                        <div class="menuDeroulantMini">
+                            <input type='checkbox' name='expedition_id_commande' value='{{ cmd_agilean["id"] }}'
+                                required>
+                            <label id="miniMenu">Expedier la commande a Agilean</label>
+                            <input type='submit' value='Envoyée' class="submitBtnMini">
+                        </div>
+                    </form>
+                    {% else %}
+                    <h4> Envoyée le :<br>{{ cmd_agilog["date_expedition_agilean"] }}</h4>
+                    {% endif %}
+                </div>
+
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</body>

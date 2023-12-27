@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pièces Détachées</title>
+    <link rel='stylesheet' type='text/css' href='{{url_for("static", filename="styles.css")}}'>
+</head>
+
+<body>
+    <div class="container">
+        <img src="{{url_for('static', filename='LogoAgilean.png')}}" class="image">
+    </div>
+    <h1 style="text-align:right;"> Commande de pièces </h1 style="text-align:right;">
+
+    <h4> <a href="{{url_for('index')}}"> <button>Accueil</button> </a> </h4>
+    <h4> <a href="{{url_for('agilean')}}"> <button>Retour</button> </a> </h4>
+    <br>
+    <p> Voici les différentes pièces disponibles :</p>
+
+    <br>
+    {% if msg!="" %}<strong style='color:red'>{{ msg }}</strong><br /><br />{% endif %}
+    <br>
+
+    <form method='post' , action='{{ url_for("pieces_detachees_agilean") }}'>
+        <div id="LabelStyle">
+
+            <!-- Contenu de la BBD -->
+            <div class='contenu'>
+                <div class="lp_table">
+                    <div class="lp_entetes">
+                        <div class="lp_entete">id piece</div>
+                        <div class="lp_entete">nom piece</div>
+                        <div class="lp_entete">quantiter</div>
+                        <div class="lp_entete">Selection</div>
+                    </div>
+                    {% for piece in liste_pieces %}
+                    <div class="lp_ligne">
+                        <div class="lp_cellule">{{ piece["id_piece"] }}</div>
+                        <div class="lp_cellule">{{ piece["nom_piece"] }}</div>
+                        <div class="lp_cellule">
+                            <div class="inputContainer">
+                                <input type='text' name='quantiter[]' placeholder='Entrée la quantiter'>
+                            </div>
+                        </div>
+                        <div class="lp_cellule">
+                            <div class="menuDeroulantMini">
+                                <input type='checkbox' name='pieces[]' value='{{ piece["id_piece"] }}'>
+                                <label for='piece-{{ piece["id_piece"] }}'>Selectionner la piece</label>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+
+
+            <br>
+            <h4 style="text-align:center;"> <input type='submit' value='Envoyée a AgiLog'> </h4>
+    </form>
+
+</body>
+
+</html>
