@@ -1,3 +1,5 @@
 __pycache__
+.mypy_cache
 back_up_main.py
 test.py
+.git
